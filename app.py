@@ -1,41 +1,19 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
-from forms import RegForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from forms import RegForm, LoginForm
+
 
 # from flask_login import login_user, current_user, logout_user, login_required
 
-app = Flask(__name__) # an instantiated Flask variable is contained in the application variable 
-
 #region Configurations
+app = Flask(__name__) # an instantiated Flask variable is contained in the application variable 
 app.config['SECRET_KEY'] = 'dd629e01302dd66fafae953bcc8f3902'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app) # this makes a db associated with this program
+from models import User, Post
 #endregion
 
-#region DB
-db = SQLAlchemy(app) # this makes a db associated with this program
-
-#this defines the structure of the DB and is called a model that inherits from Model
-class User(db.Model): 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), unique=True, nullable=False, default='pic.jpg' )
-    posts = db.relationship('Post', backref='author', lazy='True')
-
-    def __repr__(self):
-        return f"User('{self.username}','{self.email}','{self.image_file}')"
-        
-#this defines the structure of the DB and is called a model that inherits from Model
-class Post(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.String(20), unique=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=false) #user (the model) is 
-
-    def __repre__(self):
-        return f"Post('{self.title}', '{self.date}')"
+#region IMPORT
 
 #endregion
 
@@ -96,7 +74,6 @@ def login():
 def handle_logins():    
     return "Successful login."
 #endregion
-
 
 #region the driver method
 if __name__ == "__main__":
