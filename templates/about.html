@@ -1,0 +1,15 @@
+<head>
+    {% if title%}
+        <title>{{ title }}</title>
+    {% else %}
+        <title> About Us </title>
+    {% endif %}        
+</head>
+
+{% extends "layout.html" %}
+{% block content %}
+        <p>
+            Naledi is a multilingual personal banking and financial management assistant powered by Artificial Intelligence. She is built to help banks unleash the power of conversational commerce
+        </p>
+        <a href="mailto:messenger@botlhale.ai">Contact Us</a>
+{% endblock content %}

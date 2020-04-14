@@ -1,0 +1,21 @@
+<head>
+    {% if title%}
+        <title>{{ title }}</title>
+    {% else %}
+        <title> Design -UI </title>
+    {% endif %}   
+</head>
+
+{% extends "layout.html" %}
+    {% block content %}
+        
+    <form action="/action_page.php" method="get" id="form0">
+        <label for="itext">Text:</label>
+        <input type="text" id="itext" name="itext"><br><br>
+    
+         <button type="submit" form="form0" value="Save">Save</button>
+         <button type="submit" form="form0" value="Record">Record</button>
+         <button type="submit" form="form0" value="Play">Play</button>
+         <button type="submit" form="form0" value="Delete">Delete</button>
+   </form>   
+    {% endblock content %}

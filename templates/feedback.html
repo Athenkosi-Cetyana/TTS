@@ -1,0 +1,24 @@
+<head>
+    {% if title%}
+        <title>{{ title }}</title>
+    {% else %}
+        <title> Feedback </title>
+    {% endif %}   
+</head>
+
+{% extends "layout.html" %}
+{% block content %}
+    {% for tweet in tweets%}
+
+        <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ tweet.author }}</a>
+                <small class="text-muted">{{ tweet.date }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ tweet.title }}</a></h2>
+              <p class="article-content">{{ tweet.content }}</p>
+            </div>
+          </article>
+    {% endfor %}
+{% endblock content %}

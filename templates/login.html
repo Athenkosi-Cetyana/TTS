@@ -1,0 +1,23 @@
+<head>
+    {% if title%}
+        <title>{{ title }}</title>
+    {% else %}
+        <title> Login </title>
+    {% endif %}             
+</head>
+
+{% extends "layout.html" %}
+{% block content %}
+    <h1> Login</h1>
+    
+    <form action="/handle_login" method="get" id="form1">
+        <label for="user">Username:</label>
+        <input type="text" id="user" name="user"><br><br>
+
+        <label for="pass">Password:</label>
+        <input type="text" id="pass" name="pass"><br><br>
+
+        <button type="submit" form="form1" value="Login">Login</button>
+        
+    </form>
+{% endblock content %}
