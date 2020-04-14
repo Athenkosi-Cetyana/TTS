@@ -1,8 +1,11 @@
-{% extends "layout.html" %}
+{% extends "home_layout.html" %}
 {% block content %}
 
     <h1><b>Wamkelekile</b></h1>   
-    <img src="{{url_for('static', filename='pic.jpg')}}" alt ="Company Picture" align="middle" />
+    <div class="container">
+        <img src="{{url_for('static', filename='pic.jpg')}}" alt ="Company Picture" align="middle" />
+        
+    </div>
 
 {% endblock content %}
 

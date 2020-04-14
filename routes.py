@@ -1,6 +1,6 @@
 #region IMPORT
 from flask import  render_template, url_for, flash, redirect, request
-from app.formsforms import RegForm, LoginForm
+#from app.forms import RegForm, LoginForm
 from app.models import User, Post
 from app import app
 #endregion
