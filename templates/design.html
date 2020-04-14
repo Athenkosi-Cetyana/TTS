@@ -2,20 +2,51 @@
     {% if title%}
         <title>{{ title }}</title>
     {% else %}
-        <title> Design -UI </title>
+        <title> Design - UI </title>
     {% endif %}   
 </head>
 
 {% extends "layout.html" %}
     {% block content %}
-        
-    <form action="/action_page.php" method="get" id="form0">
+    
+    <style>
+        .button{
+            display: block;
+            width: 115px;
+            height: 45px;
+            background: rgb(69, 162, 185);
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+        form{
+            width: 100%;
+        }     
+    </style>
+
+    <form action="" method="post" id="form" class="form">
         <label for="itext">Text:</label>
         <input type="text" id="itext" name="itext"><br><br>
-    
-         <button type="submit" form="form0" value="Save">Save</button>
-         <button type="submit" form="form0" value="Record">Record</button>
-         <button type="submit" form="form0" value="Play">Play</button>
-         <button type="submit" form="form0" value="Delete">Delete</button>
-   </form>   
+
+         <!----------BUTTONS--------->  
+         <div class="btn-group">
+            <a href="/handle_save" type="button" form="form" class="button btn-info">SAVE</a>
+            <a href="/design" type="button" form="form" class="button btn-info">RECORD</a>
+            <a href="/design" type="button" form="form" class="button btn-info">PLAY</a>
+            <a href="/design" type="button" form="form" class="button btn-info">DELETE</a>
+         </div>         
+    </form>  
+
+    </form method="post" id="form_play">
+        <a href="/feedback" type="button" style="color: rgb(255, 0, 119);">Rate this app.</a>
+    <form>
+   
     {% endblock content %}
+
+    <!------
+        <button type="submit" form="form_save" value="Save">Save</button>
+        <button type="submit" form="form_play" value="Record">Record</button>
+        <button type="submit" form="form_play" value="Play">Play</button> 
+    ------->

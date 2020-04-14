@@ -70,9 +70,9 @@ def login():
     form = LoginForm()
     return render_template('login.html', title='Login', form=form)
 
-@app.route("/handle_login")
-def handle_logins():    
-    return "Successful login."
+@app.route("/handle_save", methods =['GET', 'POST'])
+def handle_save():    
+    return "Successfully saved."
 #endregion
 
 #region the driver method
