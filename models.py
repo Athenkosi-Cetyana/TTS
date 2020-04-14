@@ -2,7 +2,6 @@ from datetime import datetime
 from app import db
 
 #region Model User
-#this defines the structure of the DB and is called a model that inherits from Model
 class User(db.Model):     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -13,8 +12,10 @@ class User(db.Model):
 
     def __repr__(self):
         return f"User('{self.username}','{self.email}','{self.image_file}')"       
-#region
-#region Model User
+#endregion
+
+
+#region Model Post
 #this defines the structure of the DB and is called a model that inherits from Model
 class Post(db.Model): #what's in this function is what's returned when this model is invoked
     id = db.Column(db.Integer, primary_key=True)

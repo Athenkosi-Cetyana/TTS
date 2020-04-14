@@ -1,8 +1,9 @@
 #region IMPORT
 from flask import  render_template, url_for, flash, redirect, request
-#from app.forms import RegForm, LoginForm
+from app import app, db, bcrypt
+from app.forms import RegForm, LoginForm
 from app.models import User, Post
-from app import app
+
 #endregion
 
 #region Disctionaries practice ---> I will use this as source of feedback in a seperate page
@@ -51,11 +52,24 @@ def feedback():
 @app.route("/register", methods =['GET', 'POST'])
 def register():
     form = RegForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Acount created for. You can now log in!', 'sucesss') 
+        return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/login", methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'a@botlhale.ai' and form.password == 'pass':
+            flash('You have been logged in!', 'sucesss')         
+            return redirect(url_for('design'))
+        else:
+            flash('Unsuccessful login. Please check your username and/or password', 'danger') 
     return render_template('login.html', title='Login', form=form)
 
 @app.route("/handle_save", methods =['GET', 'POST'])
