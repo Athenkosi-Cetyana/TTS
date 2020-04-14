@@ -1,20 +1,8 @@
-from flask import Flask, render_template, url_for, flash, redirect, request
-from flask_sqlalchemy import SQLAlchemy
-from forms import RegForm, LoginForm
-
-
-# from flask_login import login_user, current_user, logout_user, login_required
-
-#region Configurations
-app = Flask(__name__) # an instantiated Flask variable is contained in the application variable 
-app.config['SECRET_KEY'] = 'dd629e01302dd66fafae953bcc8f3902'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app) # this makes a db associated with this program
-
-#endregion
-
 #region IMPORT
-from models import User, Post
+from flask import  render_template, url_for, flash, redirect, request
+from app.formsforms import RegForm, LoginForm
+from app.models import User, Post
+from app import app
 #endregion
 
 #region Disctionaries practice ---> I will use this as source of feedback in a seperate page
@@ -73,10 +61,4 @@ def login():
 @app.route("/handle_save", methods =['GET', 'POST'])
 def handle_save():    
     return "Successfully saved."
-#endregion
-
-#region the driver method
-if __name__ == "__main__":
-    app.debug = True
-    app.run() 
 #endregion

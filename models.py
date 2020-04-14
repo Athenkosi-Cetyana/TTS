@@ -1,5 +1,5 @@
 from datetime import datetime
-from __main__ import db
+from app import db
 
 #region Model User
 #this defines the structure of the DB and is called a model that inherits from Model
