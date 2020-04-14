@@ -6,6 +6,13 @@
     {% endif %}             
 </head>
 
+<style>
+    .organise{
+        width: 240px;
+        display:inline-block;
+    }
+</style>
+
 {% extends "layout.html" %}
 {% block content %}
 <div class = "content-section">
@@ -14,19 +21,19 @@
         <fieldset class = "form-group">
             <legend class="border-botton mb-4"> Join </legend>
             <div>
-                {{ form.username.label(class="form-control-label") }}
+                {{ form.username.label(class="organise") }}
                 {{ form.username(class="form-control-lg") }}
             </div>
             <div>
-                {{ form.email.label(class="form-control-label") }}
+                {{ form.email.label(class="organise") }}
                 {{ form.email(class="form-control-lg") }}
             </div>
             <div>
-                {{ form.password.label(class="form-control-label") }}
+                {{ form.password.label(class="organise") }}
                 {{ form.password(class="form-control-lg") }}
             </div>
             <div>
-                {{ form.confirm_password.label(class="form-control-label") }}
+                {{ form.confirm_password.label(class="organise") }}
                 {{ form.confirm_password(class="form-control-lg") }}
             </div>            
         </fieldset>
