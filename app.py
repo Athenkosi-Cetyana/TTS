@@ -21,16 +21,21 @@ class User(db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), unique=True, nullable=False, default='pic.jpg' )
+    posts = db.relationship('Post', backref='author', lazy='True')
 
     def __repr__(self):
-        return f"User('{self.username}','{self.email}','{self.image_file}'))"
+        return f"User('{self.username}','{self.email}','{self.image_file}')"
         
 #this defines the structure of the DB and is called a model that inherits from Model
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    date = db.Column(db.StriDateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.String(20), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=false) #user (the model) is 
+
+    def __repre__(self):
+        return f"Post('{self.title}', '{self.date}')"
 
 #endregion
 
