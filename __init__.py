@@ -14,6 +14,8 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 #endregion
 
+print('1')
+
 #region Avoiding-Circular-Importing
 from application import routes
 #endregion

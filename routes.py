@@ -1,12 +1,12 @@
 #region IMPORT
 from flask import  render_template, url_for, flash, redirect
-from application import app
-from application import db
-from application import bcrypt
+from application import app, db, bcrypt
 from application.forms import RegForm, LoginForm
 from application.models import User, Post
-#endregion
 
+#from flask_login import login_user, current_user, logout_user, login_required
+#endregion
+print('3')
 #region Disctionaries practice ---> I will use this as source of feedback in a seperate page
 tweets = [ 
 {
@@ -59,10 +59,10 @@ def feedback():
 def register():
     form = RegForm()
     if form.validate_on_submit():
-        #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        #user = User(username=form.data, email=form.email.data, password=hashed_password)
-        #db.session.add(user)
-        #db.session.commit()
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
         flash(f'Acount created for {form.username.data}. You can now log in!', 'sucesss') 
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -77,4 +77,16 @@ def login():
         else:
             flash('Unsuccessful login. Please check your username and/or password', 'danger')      
     return render_template('login.html', title='Login', form=form)
+
 #endregion
+
+#@app.route("/logout")
+#def logout():
+#    logout_user()
+#    return redirect(url_for('home'))
+
+#@app.route("/account")
+#@login_required
+#def account():
+#    return render_template('account.html', title='Account')
+   

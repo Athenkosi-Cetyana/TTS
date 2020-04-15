@@ -2,6 +2,11 @@ from datetime import datetime
 from application import db
 from flask_login import UserMixin
 
+print('2')
+#@login_manager.user_loader
+#def load_user(user_id):
+#    return User.query.get(int(user_id))
+
 #region Model User
 class User(db.Model):     
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +19,6 @@ class User(db.Model):
     def __repr__(self):
         return f"User('{self.username}','{self.email}','{self.image_file}')"       
 #endregion
-
 
 #region Model Post
 #this defines the structure of the DB and is called a model that inherits from Model
