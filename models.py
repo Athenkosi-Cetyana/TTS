@@ -1,6 +1,6 @@
 from datetime import datetime
 from application import db
-from flask_login import UserMixin
+#from flask_login import UserMixin
 
 print('2')
 #@login_manager.user_loader

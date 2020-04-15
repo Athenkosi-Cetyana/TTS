@@ -1,5 +1,5 @@
 #region IMPORT
-from flask import  render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from application import app, db, bcrypt
 from application.forms import RegForm, LoginForm
 from application.models import User, Post
@@ -42,18 +42,27 @@ def method():
 def about():
     return render_template('about.html')
 
-@app.route("/design")
-def design():    
-    flash('You are logged in', 'success')     
+@app.route("/design", methods = ['POST', 'GET'])
+def design():      
     return render_template('design.html')
     
 @app.route("/design_handle", methods =['GET', 'POST'])
 def design_handle(): 
+    if request.method == 'GET':
+        flash('You have been logged in!', 'sucesss')
     return redirect(url_for('design'))
     
 @app.route("/feedback")
 def feedback():
     return render_template('feedback.html', tweets = tweets)
+
+@app.route("/save", methods = ['POST', 'GET'])
+def save():    
+    if request.method == 'POST':
+        text = request.form['text']
+        # [code for saving the file to the db fits here]
+        flash('Successfully saved', 'sucesss')
+    return redirect(url_for('design'))
 
 @app.route("/register", methods =['GET', 'POST'])
 def register():

@@ -10,7 +10,7 @@
     {% block content %}
     
     <style>
-        .button{
+        input[type="submit"], input[type="button"], input[type="button"]{
             display: block;
             width: 115px;
             height: 45px;
@@ -20,13 +20,7 @@
             border-radius: 5px;
             color: white;
             font-weight: bold;
-        }
-        form{
-            width: 100%;
-        }   
-        .organise{
-        width: 240px;
-        display:inline-block;
+            cursor: pointer;
         }
         .error{
             color:red
@@ -36,16 +30,16 @@
         }
     </style>
 
-    <form action="" method="post" id="form" class="form">
+    <form method="POST" action="/save" id=form1>
         <label for="itext">Text:</label>
-        <input type="text" id="itext" name="itext"><br><br>
+        <input type="text" name="text"><br><br>
 
-         <!----------BUTTONS--------->  
-         <div class="btn-group" method="GET">
-            <a href="/design_handle" type="button" form="form" class="button btn-info">SAVE</a>
-            <a href="/design_handle" type="button" form="form" class="button btn-info">RECORD</a>
-            <a href="/design_handle" type="button" form="form" class="button btn-info">PLAY</a>
-            <a href="/design_handle" type="button" form="form" class="button btn-info">DELETE</a>
+         <!-----------------BUTTONS------------------->  
+         <div class="btn-group"> 
+            <input type="submit" value="Save">
+            <input type="button" value="Record">
+            <input type="button" value="Play">
+            <input type="button" value="Delete">
          </div>         
     </form>  
 
@@ -54,8 +48,3 @@
     <form>
    
     {% endblock content %}
-    <!------
-        <button type="submit" form="form_save" value="Save">Save</button>
-        <button type="submit" form="form_play" value="Record">Record</button>
-        <button type="submit" form="form_play" value="Play">Play</button> 
-    ------->
