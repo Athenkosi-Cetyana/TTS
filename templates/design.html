@@ -27,9 +27,15 @@
         .organise{
         width: 240px;
         display:inline-block;
-    }  
+        }
+        .error{
+            color:red
+        }
+        .success{
+            color:green
+        }
     </style>
-    
+
     <form action="" method="post" id="form" class="form">
         <label for="itext">Text:</label>
         <input type="text" id="itext" name="itext"><br><br>
@@ -48,7 +54,6 @@
     <form>
    
     {% endblock content %}
-
     <!------
         <button type="submit" form="form_save" value="Save">Save</button>
         <button type="submit" form="form_play" value="Record">Record</button>

@@ -43,15 +43,14 @@ def about():
     return render_template('about.html')
 
 @app.route("/design")
-def design():
+def design():    
+    flash('You are logged in', 'success')     
     return render_template('design.html')
     
 @app.route("/design_handle", methods =['GET', 'POST'])
-def design_handle():    
-    flash('Success!', 'sucesss') 
+def design_handle(): 
     return redirect(url_for('design'))
     
-
 @app.route("/feedback")
 def feedback():
     return render_template('feedback.html', tweets = tweets)
@@ -76,8 +75,6 @@ def login():
             flash('You have been logged in!', 'sucesss')         
             return redirect(url_for('design'))
         else:
-            flash('Unsuccessful login. Please check your username and/or password', 'danger') 
+            flash('Unsuccessful login. Please check your username and/or password', 'danger')      
     return render_template('login.html', title='Login', form=form)
-
-
 #endregion
