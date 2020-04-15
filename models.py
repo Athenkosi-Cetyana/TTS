@@ -1,14 +1,13 @@
 from datetime import datetime
-from application import db
-#from flask_login import UserMixin
+from application import db, login_manager
+from flask_login import UserMixin
 
-print('2')
-#@login_manager.user_loader
-#def load_user(user_id):
-#    return User.query.get(int(user_id))
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 #region Model User
-class User(db.Model):     
+class User(db.Model, UserMixin):     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -31,4 +30,27 @@ class Post(db.Model): #what's in this function is what's returned when this mode
 
     def __repr__(self): #what's in this function is what's returned when this model is invoked
         return f"Post('{self.title}', '{self.date}')"
+#endregion
+
+
+#region Model Text
+class Text(db.Model):     
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text, unique=True, nullable=False)
+    recorded = db.Column(db.Text, unique=True, nullable=False)
+    #corps = db.relationship('Corpus', backref='author', lazy=True)
+
+    def __repr__(self):
+        return f"Text('{self.id}','{self.text}','{self.recorded}')"       
+#endregion
+
+#region Model Corpus
+class Corpus(db.Model):     
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text, unique=True, nullable=False)
+    filename = db.Column(db.String(20), unique=True, nullable=False)
+    the_url = db.Column(db.Text, unique=True, nullable=False)
+
+    def __repr__(self):
+        return f"Corpus('{self.id}','{self.filename}','{self.url}')"       
 #endregion

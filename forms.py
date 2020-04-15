@@ -28,9 +28,18 @@ class RegForm(FlaskForm):
 
 #region Login
 class LoginForm(FlaskForm):
-    #username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember me') # holds a true or false value for caching user credintials
     submit = SubmitField('Log In')
 #endregion
+
+#region Login
+class RecordForm(FlaskForm):
+    id = StringField('ID', validators=[DataRequired()])
+    text = StringField('Text', validators=[DataRequired()])
+    recorded = StringField('Password', validators=[DataRequired()])
+    #recorded = BooleanField('Recorded')
+    submit = SubmitField('Submit')
+#endregion
+
