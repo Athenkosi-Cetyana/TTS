@@ -1,9 +1,10 @@
 #region IMPORT
-from flask import  render_template, url_for, flash, redirect, request
-from app import app, db, bcrypt
-from app.forms import RegForm, LoginForm
-from app.models import User, Post
-
+from flask import  render_template, url_for, flash, redirect
+from application import app
+from application import db
+from application import bcrypt
+from application.forms import RegForm, LoginForm
+from application.models import User, Post
 #endregion
 
 #region Disctionaries practice ---> I will use this as source of feedback in a seperate page
@@ -44,6 +45,12 @@ def about():
 @app.route("/design")
 def design():
     return render_template('design.html')
+    
+@app.route("/design_handle", methods =['GET', 'POST'])
+def design_handle():    
+    flash('Success!', 'sucesss') 
+    return redirect(url_for('design'))
+    
 
 @app.route("/feedback")
 def feedback():
@@ -53,11 +60,11 @@ def feedback():
 def register():
     form = RegForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.data, email=form.email.data, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Acount created for. You can now log in!', 'sucesss') 
+        #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        #user = User(username=form.data, email=form.email.data, password=hashed_password)
+        #db.session.add(user)
+        #db.session.commit()
+        flash(f'Acount created for {form.username.data}. You can now log in!', 'sucesss') 
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
@@ -72,7 +79,5 @@ def login():
             flash('Unsuccessful login. Please check your username and/or password', 'danger') 
     return render_template('login.html', title='Login', form=form)
 
-@app.route("/handle_save", methods =['GET', 'POST'])
-def handle_save():    
-    return "Successfully saved."
+
 #endregion

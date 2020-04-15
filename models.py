@@ -1,5 +1,6 @@
 from datetime import datetime
-from app import db
+from application import db
+from flask_login import UserMixin
 
 #region Model User
 class User(db.Model):     
