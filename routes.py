@@ -2,7 +2,7 @@
 import csv
 from flask import render_template, url_for, flash, redirect, request
 from application import app, db, bcrypt
-from application.forms import RegForm, LoginForm
+from application.forms import LoginForm
 from application.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 #endregion
@@ -76,20 +76,21 @@ def save():
         flash('Successfully saved', 'sucesss')
     return redirect(url_for('design'))
 
-@app.route("/register", methods =['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('design'))
-    form = RegForm()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.data, email=form.email.data, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash(f'Acount created for {form.username.data}. You can now log in!', 'sucesss') 
-        return redirect(url_for('login'))
-    flash('Ooops!')
-    return render_template('register.html', title='Register', form=form)
+
+#@app.route("/register", methods =['GET', 'POST'])
+#def register():
+#    if current_user.is_authenticated:
+#        return redirect(url_for('design'))
+#    form = RegForm()
+#    if form.validate_on_submit():
+#        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+#        user = User(username=form.data, email=form.email.data, password=hashed_password)
+#        db.session.add(user)
+#        db.session.commit()
+#        flash(f'Acount created for {form.username.data}. You can now log in!', 'sucesss') 
+#        return redirect(url_for('login'))
+#    flash('Ooops!')
+#    return render_template('register.html', title='Register', form=form) */
 
 @app.route("/login", methods = ['GET', 'POST'])
 def login():

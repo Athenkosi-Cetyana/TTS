@@ -42,6 +42,10 @@
             <input type="button" value="Delete">
          </div>         
     </form>  
+    
+    {% assets main.js %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% assets %}    
 
     </form method="post" id="form_play">
         <a href="/feedback" type="button" style="color: rgb(255, 0, 119);">Rate this app.</a>

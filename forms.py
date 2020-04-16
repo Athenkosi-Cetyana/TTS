@@ -34,12 +34,4 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log In')
 #endregion
 
-#region Login
-class RecordForm(FlaskForm):
-    id = StringField('ID', validators=[DataRequired()])
-    text = StringField('Text', validators=[DataRequired()])
-    recorded = StringField('Password', validators=[DataRequired()])
-    #recorded = BooleanField('Recorded')
-    submit = SubmitField('Submit')
-#endregion
 
