@@ -1,4 +1,5 @@
 #region IMPORT
+import csv
 from flask import render_template, url_for, flash, redirect, request
 from application import app, db, bcrypt
 from application.forms import RegForm, LoginForm
@@ -43,12 +44,23 @@ def about():
 
 @app.route("/design", methods = ['POST', 'GET'])
 def design():      
+    # first things first ...
+    
     return render_template('design.html')
     
 @app.route("/design_handle", methods =['GET', 'POST'])
 def design_handle(): 
     if request.method == 'GET':
-        flash('You have been logged in!', 'sucesss')
+        flash('You have been logged in!', 's ucesss')   
+        try:
+            print("reached 1")
+            f = 'words.txt'
+            path = '/home/botlhale/Desktop/Athi/Application/words.txt'
+            readFile = open(path)
+            doc = readFile.readline()
+            print(doc)
+        except:
+            doc = ""     
     return redirect(url_for('design'))
     
 @app.route("/feedback")

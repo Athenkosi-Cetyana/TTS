@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
-#region Configurations
+#region Configurations  -------- wsgi_app = app.wsgi_app
 app = Flask(__name__) # an instantiated Flask variable is contained in the application variable 
 app.config['SECRET_KEY'] = 'dd629e01302dd66fafae953bcc8f3902' 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -17,3 +17,5 @@ login_manager.login_message_category = 'info'
 #region Avoiding-Circular-Importing
 from application import routes
 #endregion
+
+#reading the text file
