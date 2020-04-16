@@ -51,14 +51,15 @@ def design():
 @app.route("/design_handle", methods =['GET', 'POST'])
 def design_handle(): 
     if request.method == 'GET':
-        flash('You have been logged in!', 's ucesss')   
+        flash('You have been logged in!', 'sucesss')   
         try:
             print("reached 1")
             f = 'words.txt'
             path = '/home/botlhale/Desktop/Athi/Application/words.txt'
             readFile = open(path)
             doc = readFile.readline()
-            print(doc)
+            # write to the the html
+            return render_template('design.html', text_read=doc)
         except:
             doc = ""     
     return redirect(url_for('design'))
