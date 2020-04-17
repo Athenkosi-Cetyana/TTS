@@ -58,6 +58,15 @@ function mousePressed() {
 button.addEventListener("click", createNew);
 function createNew(){
   say.innerHTML = "Yes";
+  fetch(`${window.origin}/design`, {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify(),
+    cache: "no-cache",
+    headers: new Headers({
+      "content-type":"application/json"
+    })
+  })
 }
 
 

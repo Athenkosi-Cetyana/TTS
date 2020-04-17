@@ -1,6 +1,6 @@
 #region IMPORT
 import csv
-from flask import render_template, url_for, flash, redirect, request, jsonify
+from flask import render_template, url_for, flash, redirect, request
 from application import app, db, bcrypt
 from application.forms import LoginForm
 from application.models import User, Post
@@ -30,6 +30,21 @@ tweets = [
 ]
 #endregion
 
+#region Function for Reading Text file
+def readText():
+    try:
+        print("reached 1")
+        f = 'words.txt'
+        path = '/home/botlhale/Desktop/Athi/Application/words.txt'
+        readFile = open(path)
+        doc = readFile.readline()
+        # write to the the html
+        return render_template('design.html', text_read=doc)
+    except:
+        doc = ""   
+
+#endregion
+
 #region HTML - pages as templated
 @app.route("/")
 @app.route("/home")
@@ -51,17 +66,7 @@ def design():
 @app.route("/design_handle", methods =['GET', 'POST'])
 def design_handle(): 
     if request.method == 'GET':
-        flash('You have been logged in!', 'sucesss')   
-        try:
-            print("reached 1")
-            f = 'words.txt'
-            path = '/home/botlhale/Desktop/Athi/Application/words.txt'
-            readFile = open(path)
-            doc = readFile.readline()
-            # write to the the html
-            return render_template('design.html', text_read=doc)
-        except:
-            doc = ""     
+        readText()   
     return redirect(url_for('design'))
     
 @app.route("/feedback")
@@ -71,25 +76,25 @@ def feedback():
 @app.route("/save", methods = ['POST', 'GET'])
 def save():    
     if request.method == 'POST':
-        text = request.form['text']
+        text = request.form.get('text')
         # [code for saving the file to the db fits here]
         flash('Successfully saved', 'sucesss')
     return redirect(url_for('design'))
 
 @app.route("/login", methods = ['GET','POST'])
 def login():
-    if request.form == 'GET':
-        print("Reached?")
-    user1 = request.form['user']
-    password1 = request.form['pass']
-    
-    if user1 and password1:
-        newUser = user1[::-1]
-        return jsonify({'user' : newUser})
-
-    return jsonify({'error' : 'Incorrect username or password'})
-
-    flash('Unsuccessful login. Please check your username and/or password', 'danger')      
+    if current_user.is_authenticated:
+        return render_template(url_for('home'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            return redirect(url_for('design'))
+            #next_page = request.args.get('next')
+            #return redirect(next_page) if next_page else redirect(url_for('home'))
+        else:
+            flash('Unsuccessful login. Please check your username and/or password', 'danger')      
     return render_template('login.html', title='Log In', form=form)
 #endregion
 

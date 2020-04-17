@@ -7,7 +7,7 @@ $(document).ready(function() {
 				user1 : $('#user').val(),
 				password1 : $('#pass').val()
 			},
-			type : 'POST',
+			type : 'GET',
 			url : '/login'
 		})
 		.done(function(data) {
@@ -25,3 +25,20 @@ $(document).ready(function() {
 	});
 
 });
+
+/**
+ * 
+  CODE FOR LOGIN AUTHENTICATION ON THE ROUTE MODULE:
+	if request.form == 'GET':
+        print("Reached?")
+    user1 = request.form.get('user')
+    password1 = request.form.get('pass')
+    
+    if user1 and password1:
+        newUser = user1[::-1]
+        return jsonify({'user1' : newUser})
+
+    return jsonify({'error' : 'Incorrect username or password'})
+
+ * 
+ */

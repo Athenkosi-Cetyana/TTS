@@ -3,13 +3,8 @@
         <title>{{ title }}</title>
     {% else %}
         <title> Login </title>
-    {% endif %}         
-    
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    {% endif %}   
+          
     <script src = "{{ url_for('static', filename='form.js') }}"></script>
 </head>
 
@@ -35,10 +30,10 @@
 
     <form action="/design_handle" method="GET" id="l_form">
         <label for="user">Username:</label>
-        <input type="text" id="user" name="user"><br><br>
+        <input name="user" type="text" id="user" ><br><br>
 
         <label for="pass">Password:</label>
-        <input type="text" id="pass" name="pass"><br><br>
+        <input name="pass" type="text" id="pass" ><br><br>
 
         <div class="btn-group">
             <input type="submit" value="Log In">
