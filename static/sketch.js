@@ -1,10 +1,11 @@
-//var mic;
+
 var song;
 var record_button;
 var stop_button;
 var play_button;
 var delete_button;
-//var clicked
+var say = document.getElementById("formz");
+var button = document.getElementById("bx");
 
 let mic, recorder, soundFile;
 
@@ -31,7 +32,9 @@ function setup() {
   // create an empty sound file that we will use to playback the recording
   soundFile = new p5.SoundFile();
 }
-function mousePressed() {
+function mousePressed() {  
+  
+
   // use the '.enabled' boolean to make sure user enabled the mic (otherwise we'd record silence)
   if (state === 0 && mic.enabled) {
     // Tell recorder to record to a p5.SoundFile which we will use for playback
@@ -51,6 +54,10 @@ function mousePressed() {
     saveSound(soundFile, 'mySound.wav'); // save file
     state++;
   }
+}
+button.addEventListener("click", createNew);
+function createNew(){
+  say.innerHTML = "Yes";
 }
 
 

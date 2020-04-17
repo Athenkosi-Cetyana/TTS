@@ -3,7 +3,7 @@
         <title>{{ title }}</title>
     {% else %}
         <title> Design - UI </title>
-    {% endif %}   
+    {% endif %}  
 </head>
 
 {% extends "layout.html" %}
@@ -32,23 +32,23 @@
 
     <form method="POST" action="/save" id=form1>
         <h3><b>"{{ text_read }}"</b></h3>
-        <!---- <input type="text" name="text"><br><br> ---->
-
          <!-----------------BUTTONS------------------->  
          <div class="btn-group"> 
             <input type="submit" value="Save">
-            <input type="button" value="Record">
+            <input type="button" id = "bx" value="Record">
             <input type="button" value="Play">
             <input type="button" value="Delete">
          </div>         
-    </form>  
-    
-    {% assets main.js %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% assets %}    
+    </form>        
 
     </form method="post" id="form_play">
+        <h3 id="formz">
+            Can I edit this with .JS?
+        </h3>
         <a href="/feedback" type="button" style="color: rgb(255, 0, 119);">Rate this app.</a>
-    <form>
-   
+    <form>   
+    {% assets "main_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}  
+    
     {% endblock content %}

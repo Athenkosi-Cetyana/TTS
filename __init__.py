@@ -14,7 +14,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-js = Bundle('sketch.js', output='gen/main.js')
+js = Bundle('p5.js','p5.min.js','alert_message.js','sketch.js', output='gen/main.js')
 assets = Environment(app)
 assets.register('main_js', js)
 #endregion
