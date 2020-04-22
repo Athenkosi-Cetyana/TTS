@@ -1,4 +1,4 @@
-
+/*
 var song;
 var record_button;
 var stop_button;
@@ -55,6 +55,7 @@ function mousePressed() {
     state++;
   }
 }
+/*
 button.addEventListener("click", createNew);
 function createNew(){
   say.innerHTML = "Yes";
@@ -67,7 +68,7 @@ function createNew(){
       "content-type":"application/json"
     })
   })
-}
+}*/
 
 
 
